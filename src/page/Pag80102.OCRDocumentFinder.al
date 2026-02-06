@@ -150,8 +150,7 @@ page 80102 "OCR Document Finder"
                         CurrPage.Update(false);
 
                         // Abrir página de resultados
-                        SearchResultsPage.SetTableView(SearchResults);
-                        SearchResultsPage.RunModal();
+                        PAGE.RUN(PAGE::"OCR Search Results", SearchResults);
 
                         Message('%1 coincidencia(s) encontrada(s) en %2 líneas', ResultsCount, TotalLinesAnalyzed);
                     end else begin

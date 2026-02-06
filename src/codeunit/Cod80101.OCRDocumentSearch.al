@@ -23,17 +23,17 @@ codeunit 80101 "OCR Document Search"
         // Obtener y analizar el documento desde Continia
         JsonResponse := AnalyzeContiniaPDF(DocumentCaptureNo);
 
+        ClearLastError();
         if JsonResponse <> '' then begin
             // Buscar el texto en las líneas extraídas
             TotalLinesFound := FindTextInLines(JsonResponse, SearchText, SearchResults);
             Success := true;
         end;
-        //except TODO
-        if GetLastErrorText() <> '' then
+        if GetLastErrorText() <> '' then begin
             ErrorMsg := GetLastErrorText();
-        ClearLastError();
-        Success := false;
-        //end;
+            Success := false;
+        end;
+
 
         // Calcular tiempo de procesamiento
         ProcessingTime := CurrentDateTime - StartTime;
@@ -146,6 +146,7 @@ codeunit 80101 "OCR Document Search"
 
                                         // Guardar resultado
                                         SearchResults.Init();
+                                        SearchResults."Entry No." := LineNumber;
                                         SearchResults."Line No." := LineNumber;
                                         SearchResults.Description := CopyStr(Description, 1, MaxStrLen(SearchResults.Description));
                                         SearchResults."Product Code" := CopyStr(ProductCode, 1, MaxStrLen(SearchResults."Product Code"));

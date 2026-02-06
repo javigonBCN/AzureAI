@@ -6,10 +6,12 @@ codeunit 80100 "OCR Azure Doc Intelligence"
         HttpClient: HttpClient;
         HttpContent: HttpContent;
         Headers: HttpHeaders;
+        ResponseHeaders: HttpHeaders;
         HttpResponseMessage: HttpResponseMessage;
         InStr: InStream;
         RequestUri: Text;
         ResponseText: Text;
+        HeaderValues: array[100] of Text;
         OperationLocation: Text;
         StartTime: DateTime;
     begin
@@ -22,8 +24,9 @@ codeunit 80100 "OCR Azure Doc Intelligence"
         // Preparar el contenido del PDF
         TempBlob.CreateInStream(InStr);
         HttpContent.WriteFrom(InStr);
-        Headers.Clear();
-        Headers.Add('Content-Type', 'application/pdf');
+        HttpContent.GetHeaders(Headers);
+        Headers.Remove('Content-Type');
+        Headers.Add('Content-Type', 'application/octet-stream');
         Headers.Add('Ocp-Apim-Subscription-Key', AzureConfig."API Key");
 
         // Configurar request
@@ -43,7 +46,18 @@ codeunit 80100 "OCR Azure Doc Intelligence"
         // if not HttpResponseMessage.Headers().ContainsKey('Operation-Location') then
         //     Error('No se recibió Operation-Location de Azure');
 
-        // HttpResponseMessage.Headers().GetValues('Operation-Location', OperationLocation);
+        //HttpResponseMessage.Headers().GetValues('Operation-Location', OperationLocation);
+
+        // Verificar que el header existe
+        ResponseHeaders := HttpResponseMessage.Headers();
+
+        if not ResponseHeaders.Contains('Operation-Location') then
+            Error('No se recibió Operation-Location de Azure');
+
+        // Obtener su valor
+        ResponseHeaders.GetValues('Operation-Location', HeaderValues);
+        if ArrayLen(HeaderValues) > 0 then
+            OperationLocation := HeaderValues[1];
 
         // Esperar y obtener resultados
         ResponseText := WaitForAnalysisResults(OperationLocation, AzureConfig);
@@ -65,6 +79,8 @@ codeunit 80100 "OCR Azure Doc Intelligence"
     begin
         MaxAttempts := AzureConfig."Timeout Seconds" div 2;
         Attempt := 0;
+
+        ProgressDialog.Open('Procesando documento con Azure AI...\\Intento #1######## de #2########');
 
         HttpClient.DefaultRequestHeaders().Clear();
         HttpClient.DefaultRequestHeaders().Add('Ocp-Apim-Subscription-Key', AzureConfig."API Key");
