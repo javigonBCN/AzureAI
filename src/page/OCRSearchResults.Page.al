@@ -8,6 +8,7 @@ page 80101 "OCR Search Results"
     InsertAllowed = false;
     DeleteAllowed = false;
     ModifyAllowed = false;
+    UsageCategory = None;
 
     layout
     {
@@ -20,46 +21,56 @@ page 80101 "OCR Search Results"
                     ApplicationArea = All;
                     StyleExpr = LineNoStyle;
                     Caption = 'Línea Nº';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Width = 50;
                 }
                 field("Product Code"; Rec."Product Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Caption = 'UM';
                 }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Tax Rate"; Rec."Tax Rate")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Caption = '% IVA';
                 }
                 field("Tax Amount"; Rec."Tax Amount")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Caption = 'Imp. IVA';
                 }
                 field("Match Found In"; Rec."Match Found In")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Style = Attention;
                     StyleExpr = true;
                     Width = 30;
@@ -68,6 +79,7 @@ page 80101 "OCR Search Results"
                 {
                     ApplicationArea = All;
                     Caption = 'Confianza %';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     DecimalPlaces = 0 : 2;
 
                     trigger OnDrillDown()
@@ -101,8 +113,8 @@ page 80101 "OCR Search Results"
 
                 trigger OnAction()
                 var
-                    OCRDocSearch: Codeunit "OCR Document Search";
                     TempSearchResults: Record "OCR Search Results" temporary;
+                    OCRDocSearch: Codeunit "OCR Document Search";
                 begin
                     // Copiar registros a tabla temporal
                     if Rec.FindSet() then
@@ -111,8 +123,7 @@ page 80101 "OCR Search Results"
                             TempSearchResults.Insert();
                         until Rec.Next() = 0;
 
-                    //TODO
-                    //OCRDocSearch.ExportResultsToExcel(TempSearchResults);
+                    OCRDocSearch.ExportResultsToExcel(TempSearchResults);
                 end;
             }
 
@@ -184,10 +195,11 @@ page 80101 "OCR Search Results"
     begin
         if Rec."Confidence Score" >= 0.95 then
             LineNoStyle := 'Favorable'
-        else if Rec."Confidence Score" >= 0.80 then
-            LineNoStyle := 'Standard'
         else
-            LineNoStyle := 'Attention';
+            if Rec."Confidence Score" >= 0.80 then
+                LineNoStyle := 'Standard'
+            else
+                LineNoStyle := 'Attention';
     end;
 
     var

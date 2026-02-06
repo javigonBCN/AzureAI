@@ -75,22 +75,6 @@ page 80100 "OCR Azure AI Configuration"
                     ToolTip = 'Tiempo máximo de espera para la respuesta de Azure AI (en segundos)';
                 }
             }
-
-            group(Instructions)
-            {
-                Caption = 'Instrucciones de Configuración';
-                Visible = ShowInstructions;
-
-                field(InstructionsText; InstructionsLbl)
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                    MultiLine = true;
-                    ShowCaption = false;
-                    Style = StrongAccent;
-                    StyleExpr = true;
-                }
-            }
         }
     }
 
@@ -110,21 +94,6 @@ page 80100 "OCR Azure AI Configuration"
                     Rec.TestConnection();
                 end;
             }
-
-            action(ShowInstructionsAction)
-            {
-                ApplicationArea = All;
-                Caption = 'Show Instructions';
-                Image = Info;
-                ToolTip = 'Mostrar instrucciones de configuración';
-
-                trigger OnAction()
-                begin
-                    ShowInstructions := not ShowInstructions;
-                    CurrPage.Update(false);
-                end;
-            }
-
             action(OpenAzurePortal)
             {
                 ApplicationArea = All;
@@ -160,11 +129,5 @@ page 80100 "OCR Azure AI Configuration"
             Rec."Primary Key" := '';
             Rec.Insert();
         end;
-
-        ShowInstructions := (Rec."Endpoint URL" = '') or (Rec."API Key" = '');
     end;
-
-    var
-        ShowInstructions: Boolean;
-        InstructionsLbl: Label 'PASOS PARA CONFIGURAR AZURE AI DOCUMENT INTELLIGENCE:\1. Crear recurso en Azure Portal (Form Recognizer / Document Intelligence)\2. Copiar el Endpoint URL (ej: https://yourresource.cognitiveservices.azure.com)\3. Copiar una de las API Keys\4. Pegar ambos valores en esta página\5. Presionar "Test Connection" para verificar';
 }

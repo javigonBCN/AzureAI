@@ -15,6 +15,7 @@ page 80104 "OCR Result Detail FactBox"
                 field("Line No."; Rec."Line No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Style = Strong;
                     StyleExpr = true;
                 }
@@ -22,12 +23,14 @@ page 80104 "OCR Result Detail FactBox"
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     MultiLine = true;
                 }
 
                 field("Product Code"; Rec."Product Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
             }
 
@@ -38,21 +41,25 @@ page 80104 "OCR Result Detail FactBox"
                 field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field("Unit Price"; Rec."Unit Price")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Style = Strong;
                     StyleExpr = true;
                 }
@@ -60,11 +67,13 @@ page 80104 "OCR Result Detail FactBox"
                 field("Tax Rate"; Rec."Tax Rate")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field("Tax Amount"; Rec."Tax Amount")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
             }
 
@@ -75,6 +84,7 @@ page 80104 "OCR Result Detail FactBox"
                 field("Match Found In"; Rec."Match Found In")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Style = Attention;
                     StyleExpr = true;
                 }
@@ -83,6 +93,7 @@ page 80104 "OCR Result Detail FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Nivel de Confianza';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Style = Favorable;
                     StyleExpr = Rec."Confidence Score" >= 0.90;
                 }

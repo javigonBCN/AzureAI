@@ -16,6 +16,7 @@ page 80105 "OCR Log Statistics FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Total Operaciones';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     StyleExpr = 'Strong';
 
                     trigger OnDrillDown()
@@ -30,6 +31,7 @@ page 80105 "OCR Log Statistics FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Exitosas';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     StyleExpr = 'Favorable';
                 }
 
@@ -37,6 +39,7 @@ page 80105 "OCR Log Statistics FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Fallidas';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     StyleExpr = 'Unfavorable';
                 }
 
@@ -44,6 +47,7 @@ page 80105 "OCR Log Statistics FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Tasa de Éxito';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     StyleExpr = 'Standard';
                 }
             }
@@ -63,12 +67,14 @@ page 80105 "OCR Log Statistics FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Documentos Analizados';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field(TotalResults; TotalResults)
                 {
                     ApplicationArea = All;
                     Caption = 'Resultados Encontrados';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
             }
 
@@ -80,18 +86,21 @@ page 80105 "OCR Log Statistics FactBox"
                 {
                     ApplicationArea = All;
                     Caption = 'Hoy';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field(OperationsThisWeek; OperationsThisWeek)
                 {
                     ApplicationArea = All;
                     Caption = 'Esta Semana';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
 
                 field(OperationsThisMonth; OperationsThisMonth)
                 {
                     ApplicationArea = All;
                     Caption = 'Este Mes';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
             }
         }
@@ -111,6 +120,7 @@ page 80105 "OCR Log Statistics FactBox"
     var
         OCRLog: Record "OCR Operation Log";
         TotalTime: BigInteger;
+        SecondTxt: Label '%1 sec', Comment = 'ESP="%1 seg"';
     begin
         // Total operaciones
         OCRLog.Reset();
@@ -127,7 +137,7 @@ page 80105 "OCR Log Statistics FactBox"
 
         // Tasa de éxito
         if TotalOperations > 0 then
-            SuccessRateText := StrSubstNo('%1%', Round((SuccessfulOperations / TotalOperations) * 100, 0.1))
+            SuccessRateText := StrSubstNo(SecondTxt, Round((SuccessfulOperations / TotalOperations) * 100, 0.1))
         else
             SuccessRateText := 'N/A';
 
@@ -141,7 +151,7 @@ page 80105 "OCR Log Statistics FactBox"
             until OCRLog.Next() = 0;
 
             if SuccessfulOperations > 0 then
-                AvgProcessingTimeText := StrSubstNo('%1 seg', Round((TotalTime / SuccessfulOperations) / 1000, 0.01))
+                AvgProcessingTimeText := StrSubstNo(SecondTxt, Round((TotalTime / SuccessfulOperations) / 1000, 0.01))
             else
                 AvgProcessingTimeText := 'N/A';
         end else

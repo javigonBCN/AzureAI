@@ -6,6 +6,7 @@ page 80106 "OCR Document"
     Editable = false;
     PageType = List;
     SourceTable = "CDC Document";
+    UsageCategory = None;
     layout
     {
         area(content)
@@ -22,13 +23,13 @@ page 80106 "OCR Document"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the category that the document belongs to.';
                 }
-                field(Control1000000005; Rec.GetSourceID)
+                field(Control1000000005; Rec.GetSourceID())
                 {
                     ApplicationArea = All;
                     Caption = 'Source ID';
                     ToolTip = 'Specifies the primary key of the record this document belong. For purchase related documents this will show the number of the vendor.';
                 }
-                field(Control1000000010; Rec.GetSourceName)
+                field(Control1000000010; Rec.GetSourceName())
                 {
                     ApplicationArea = All;
                     Caption = 'Name';

@@ -218,15 +218,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Search Results - Field Unit Price - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3209667910 - Method 3533926274 - NamedType 2389531293" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error connecting to Azure AI Document Intelligence</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Error al conectar con Azure AI Document Intelligence"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Azure Doc Intelligence - Method AnalyzeDocumentForSearch - NamedType ConnectionErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3209667910 - Method 3533926274 - NamedType 856013284" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No Operation-Location was received from Azure, which is the entity that processes the OCR.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="No se recibió Operation-Location de Azure, que es quien procesa el OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Azure Doc Intelligence - Method AnalyzeDocumentForSearch - NamedType OperLocationErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3209667910 - Method 1178923586 - NamedType 125578617" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Azure AI Document Intelligence is disabled. Enable it in the settings.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Azure AI Document Intelligence está deshabilitado. Habilítelo en la configuración."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Azure Doc Intelligence - Method ValidateConfiguration - NamedType ConfigErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3209667910 - Method 204211996 - NamedType 1960181513" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The document analysis failed in Azure AI.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="El análisis del documento falló en Azure AI"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Azure Doc Intelligence - Method WaitForAnalysisResults - NamedType AnylisisErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3209667910 - Method 204211996 - NamedType 171361402" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Timeout waiting for a response from Azure AI. Please try again or increase the timeout in the settings.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Timeout esperando respuesta de Azure AI. Intente nuevamente o aumente el timeout en la configuración."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Azure Doc Intelligence - Method WaitForAnalysisResults - NamedType TimeoutErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3209667910 - Method 204211996 - NamedType 149879980" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing document with Azure AI...\\Attempt #1######## of #2########</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Procesando documento con Azure AI...\\Intento #1######## de #2########"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Azure Doc Intelligence - Method WaitForAnalysisResults - NamedType DialogTxt</note>
+        </trans-unit>
         <trans-unit id="Page 62618801 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Azure AI Document Intelligence Configuration</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 62618801 - NamedType 2377828003" size-unit="char" translate="yes" xml:space="preserve">
-          <source>PASOS PARA CONFIGURAR AZURE AI DOCUMENT INTELLIGENCE:\1. Crear recurso en Azure Portal (Form Recognizer / Document Intelligence)\2. Copiar el Endpoint URL (ej: https://yourresource.cognitiveservices.azure.com)\3. Copiar una de las API Keys\4. Pegar ambos valores en esta página\5. Presionar "Test Connection" para verificar</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - NamedType InstructionsLbl</note>
         </trans-unit>
         <trans-unit id="Page 62618801 - Control 4270985946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Advanced Settings</source>
@@ -273,11 +298,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Enabled - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 62618801 - Control 201881077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Instrucciones de Configuración</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Instructions - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 62618801 - Action 1351689368 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Ver el registro de operaciones OCR</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -297,16 +317,6 @@
           <source>Open Azure Portal</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Action OpenAzurePortal - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 62618801 - Action 4159631970 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Mostrar instrucciones de configuración</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Action ShowInstructionsAction - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 62618801 - Action 4159631970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Show Instructions</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Action ShowInstructionsAction - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 62618801 - Action 4263468516 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Probar la conexión con Azure AI Document Intelligence</source>
@@ -378,6 +388,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control DocumentSelection - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2384498813 - Control 2159343859 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control DocumentDescription - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2384498813 - Control 2159343859 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Descripción</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -393,25 +408,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control DocumentNo - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2384498813 - Control 3991658564 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>PDF Adjunto</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control HasPDF - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 2384498813 - Control 2672556262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Resultados</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control Results - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2384498813 - Control 353152538 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control ProcessingTime - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2384498813 - Control 353152538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tiempo de Procesamiento</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control ProcessingTime - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2384498813 - Control 2573215995 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specify the Results Found</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Especifica los Resultados Encontrados"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control ResultsCount - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2384498813 - Control 2573215995 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Resultados Encontrados</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <source>Results Found</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Resultados Encontrados"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control ResultsCount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2384498813 - Control 3350532625 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control TotalLinesAnalyzed - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2384498813 - Control 3350532625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Total Líneas Analizadas</source>
@@ -422,6 +447,11 @@
           <source>Criterios de Búsqueda</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control SearchCriteria - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2384498813 - Control 2087248711 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Control SearchExamples - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2384498813 - Control 2087248711 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Ejemplos</source>
@@ -508,10 +538,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control AvgProcessingTime - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 677527838 - Control 3824624946 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control TotalDocuments - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 677527838 - Control 3824624946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Documentos Analizados</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control TotalDocuments - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 677527838 - Control 94654988 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control TotalResults - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 677527838 - Control 94654988 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Resultados Encontrados</source>
@@ -523,15 +563,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control Recent - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 677527838 - Control 3228850860 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control OperationsThisMonth - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 677527838 - Control 3228850860 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Este Mes</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control OperationsThisMonth - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 677527838 - Control 731190592 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control OperationsThisWeek - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 677527838 - Control 731190592 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Esta Semana</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control OperationsThisWeek - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 677527838 - Control 3769858755 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control OperationsToday - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 677527838 - Control 3769858755 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Hoy</source>
@@ -543,20 +598,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control Statistics - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 677527838 - Control 3472764503 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control FailedOperations - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 677527838 - Control 3472764503 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fallidas</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control FailedOperations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 677527838 - Control 871260006 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control SuccessfulOperations - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 677527838 - Control 871260006 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Exitosas</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control SuccessfulOperations - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 677527838 - Control 3893789211 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control SuccessRate - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 677527838 - Control 3893789211 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tasa de Éxito</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control SuccessRate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 677527838 - Control 2895248536 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Log Statistics FactBox - Control TotalOperations - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 677527838 - Control 2895248536 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Total Operaciones</source>
@@ -568,10 +643,65 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 2852966117 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Error Message - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 3127005848 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Operation DateTime - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 3156524383 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Operation Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 881222203 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Processing Time (ms) - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 4208074897 - Control 881222203 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Time (ms)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Processing Time (ms) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 1007782296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Results Found - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 2466246477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Search Text - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Status - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 2179969641 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control Total Lines Analyzed - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4208074897 - Control 2708250016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Operation Log - Control User ID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4208074897 - Action 334713382 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Limpiar todos los filtros</source>
@@ -643,10 +773,55 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Amounts - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 979998213 - Control 636392376 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 1829120667 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Tax Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 2336841233 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Tax Rate - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 1920046521 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Unit of Measure - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 2937233469 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Unit Price - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 979998213 - Control 318613646 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Información de la Línea</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Details - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 3265714202 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Product Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 979998213 - Control 2484771274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Texto Completo</source>
@@ -658,40 +833,105 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control MatchInfo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 979998213 - Control 2671769216 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Confidence Score - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 979998213 - Control 2671769216 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Nivel de Confianza</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Confidence Score - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 979998213 - Control 1413068686 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Result Detail FactBox - Control Match Found In - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1931801454 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Resultados de Búsqueda OCR</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 636392376 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 2671769216 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Confidence Score - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1931801454 - Control 2671769216 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Confianza %</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Confidence Score - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Line No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1931801454 - Control 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Línea Nº</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Line No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 1413068686 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Match Found In - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 3265714202 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Product Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 1829120667 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Tax Amount - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1931801454 - Control 1829120667 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Imp. IVA</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Tax Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 2336841233 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Tax Rate - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1931801454 - Control 2336841233 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>% IVA</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Tax Rate - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 1920046521 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Unit of Measure - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1931801454 - Control 1920046521 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>UM</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Unit of Measure - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1931801454 - Control 2937233469 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2">ESP=" "</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Control Unit Price - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1931801454 - Action 334713382 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Limpiar todos los filtros</source>

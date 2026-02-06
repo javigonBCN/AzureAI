@@ -51,8 +51,6 @@ codeunit 80101 "OCR Document Search"
     var
         TempBlob: Codeunit "Temp Blob";
         AzureDocIntelligence: Codeunit "OCR Azure Doc Intelligence";
-        InStr: InStream;
-        OutStr: OutStream;
     begin
         // Extraer el PDF de Continia Document Capture
         ExtractContiniaDocument(DocumentCaptureNo, TempBlob);
@@ -114,8 +112,7 @@ codeunit 80101 "OCR Document Search"
                 if DocumentsToken.AsArray().Get(0, DocumentToken) then
                     if DocumentToken.AsObject().Get('fields', FieldsToken) then
                         if FieldsToken.AsObject().Get('Items', ItemsToken) then
-                            if ItemsToken.AsObject().Get('valueArray', ItemsToken) then begin
-
+                            if ItemsToken.AsObject().Get('valueArray', ItemsToken) then
                                 foreach ItemToken in ItemsToken.AsArray() do begin
                                     LineNumber += 1;
                                     TotalLines += 1;
@@ -162,7 +159,6 @@ codeunit 80101 "OCR Document Search"
                                         SearchResults.Insert();
                                     end;
                                 end;
-                            end;
 
         exit(TotalLines);
     end;
@@ -224,10 +220,7 @@ codeunit 80101 "OCR Document Search"
     procedure ExportResultsToExcel(var SearchResults: Record "OCR Search Results" temporary)
     var
         TempExcelBuffer: Record "Excel Buffer" temporary;
-        RowNo: Integer;
     begin
-        RowNo := 1;
-
         // Headers
         TempExcelBuffer.NewRow();
         TempExcelBuffer.AddColumn('Línea', false, '', true, false, false, '', TempExcelBuffer."Cell Type"::Text);

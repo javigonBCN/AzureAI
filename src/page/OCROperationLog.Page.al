@@ -19,14 +19,17 @@ page 80103 "OCR Operation Log"
                 field("Entry No."; Rec."Entry No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Operation DateTime"; Rec."Operation DateTime")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
 
                     //TODO
                     // trigger OnDrillDown()
@@ -41,39 +44,47 @@ page 80103 "OCR Operation Log"
                 field("Operation Type"; Rec."Operation Type")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Search Text"; Rec."Search Text")
                 {
                     ApplicationArea = All;
                     Width = 30;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Results Found"; Rec."Results Found")
                 {
                     ApplicationArea = All;
                     Style = Favorable;
                     StyleExpr = Rec."Results Found" > 0;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Total Lines Analyzed"; Rec."Total Lines Analyzed")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     StyleExpr = StatusStyle;
                 }
                 field("Processing Time (ms)"; Rec."Processing Time (ms)")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Caption = 'Time (ms)';
                 }
                 field("User ID"; Rec."User ID")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                 }
                 field("Error Message"; Rec."Error Message")
                 {
                     ApplicationArea = All;
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Visible = false;
                     Width = 50;
                 }

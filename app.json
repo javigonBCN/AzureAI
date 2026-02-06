@@ -5,11 +5,11 @@
   "version": "26.0.0.0",
   "brief": "Developments for Grup Escudero for Azure AI Document Intelligence",
   "description": "Developments for Grup Escudero usando Azure AI Document Intelligence",
-  "privacyStatement": "",
-  "EULA": "",
-  "help": "",
-  "url": "",
-   "logo": "",
+  "privacyStatement": "https://www.olivia.es/",
+  "EULA": "https://www.olivia.es/",
+  "help": "https://www.olivia.es/",
+  "url": "https://www.olivia.es/",
+  "logo": "./logo/logo.png",
   "dependencies": [
         {
       "id": "6da8dd2f-e698-461f-9147-8e404244dd85",

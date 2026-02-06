@@ -42,20 +42,12 @@ page 80102 "OCR Document Finder"
                             UpdateDocumentInfo();
                     end;
                 }
-
                 field(DocumentDescription; DocumentDescription)
                 {
                     ApplicationArea = All;
                     Caption = 'Descripción';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Editable = false;
-                }
-                field(HasPDF; HasPDF)
-                {
-                    ApplicationArea = All;
-                    Caption = 'PDF Adjunto';
-                    Editable = false;
-                    Style = Favorable;
-                    StyleExpr = HasPDF;
                 }
             }
 
@@ -79,6 +71,7 @@ page 80102 "OCR Document Finder"
                 {
                     ApplicationArea = All;
                     Caption = 'Ejemplos';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Editable = false;
                     MultiLine = true;
                     ShowCaption = true;
@@ -93,7 +86,8 @@ page 80102 "OCR Document Finder"
                 field(ResultsCount; ResultsCount)
                 {
                     ApplicationArea = All;
-                    Caption = 'Resultados Encontrados';
+                    Caption = 'Results Found', Comment = 'ESP="Resultados Encontrados"';
+                    ToolTip = 'Specify the Results Found', Comment = 'ESP="Especifica los Resultados Encontrados"';
                     Editable = false;
                     Style = Strong;
                     StyleExpr = true;
@@ -103,6 +97,7 @@ page 80102 "OCR Document Finder"
                 {
                     ApplicationArea = All;
                     Caption = 'Total Líneas Analizadas';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Editable = false;
                 }
 
@@ -110,6 +105,7 @@ page 80102 "OCR Document Finder"
                 {
                     ApplicationArea = All;
                     Caption = 'Tiempo de Procesamiento';
+                    ToolTip = ' ', Comment = 'ESP=" "';
                     Editable = false;
                 }
             }
@@ -128,9 +124,8 @@ page 80102 "OCR Document Finder"
                 ToolTip = 'Analizar el documento con Azure AI y buscar el texto especificado';
                 trigger OnAction()
                 var
+                    TEMPSearchResults: Record "OCR Search Results" temporary;
                     OCRSearch: Codeunit "OCR Document Search";
-                    SearchResults: Record "OCR Search Results" temporary;
-                    SearchResultsPage: Page "OCR Search Results";
                     StartTime: DateTime;
                 begin
                     ValidateSearch();
@@ -138,9 +133,9 @@ page 80102 "OCR Document Finder"
                     StartTime := CurrentDateTime;
 
                     // Ejecutar búsqueda
-                    if OCRSearch.SearchInDocument(DocumentNo, SearchText, SearchResults) then begin
+                    if OCRSearch.SearchInDocument(DocumentNo, SearchText, TEMPSearchResults) then begin
                         // Mostrar resultados
-                        ResultsCount := SearchResults.Count();
+                        ResultsCount := TEMPSearchResults.Count();
                         SearchPerformed := true;
                         ProcessingTimeText := Format(CurrentDateTime - StartTime);
 
@@ -150,7 +145,7 @@ page 80102 "OCR Document Finder"
                         CurrPage.Update(false);
 
                         // Abrir página de resultados
-                        PAGE.RUN(PAGE::"OCR Search Results", SearchResults);
+                        PAGE.RUN(PAGE::"OCR Search Results", TEMPSearchResults);
 
                         Message('%1 coincidencia(s) encontrada(s) en %2 líneas', ResultsCount, TotalLinesAnalyzed);
                     end else begin
@@ -195,10 +190,6 @@ page 80102 "OCR Document Finder"
                     Document2: Record "GES CDC Document";
                     TempFile: Record "CDC Temp File" temporary;
                     TempFile2: Record "GES CDC Temp File" temporary;
-                    FileManagement: Codeunit "File Management";
-                    InStr: InStream;
-                    OutStr: OutStream;
-                    FilePath: Text;
                 begin
                     if DocumentNo = '' then
                         exit;
@@ -210,11 +201,9 @@ page 80102 "OCR Document Finder"
                     if DCDocuments.HasMiscFile() then
                         DCDocuments.GetMiscFile(TempFile);
 
-
                     Document2.TransferFields(DCDocuments);
 
                     TempFile.Name := CopyStr(Document2.GetDocFileDescription() + '.' + Document2."File Extension", 1, 199);
-
                     TempFile2.TransferFields(TempFile);
                     TempFile2.Open();
                 end;
@@ -278,9 +267,6 @@ page 80102 "OCR Document Finder"
             exit;
 
         if DCDocuments.Get(DocumentNo) then begin
-            //DocumentDescription := DCDocuments.Description;
-            //VendorName := DCDocuments."Buy-from Vendor Name";
-            //DCDocuments.CalcFields("PDF File");
             IF DCDocuments."File Extension" = 'pdf' then
                 HasPDF := true;
         end;
@@ -309,7 +295,6 @@ page 80102 "OCR Document Finder"
         DocumentNo: Code[20];
         SearchText: Text[100];
         DocumentDescription: Text[250];
-        VendorName: Text[100];
         HasPDF: Boolean;
         SearchPerformed: Boolean;
         ResultsCount: Integer;

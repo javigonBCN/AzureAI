@@ -36,8 +36,8 @@ pageextension 80100 "CDC Document OCR Ext" extends "GES CDC DragDrop and Scan Fa
 
                     trigger OnAction()
                     var
+                        TEMPSearchResults: Record "OCR Search Results" temporary;
                         OCRSearch: Codeunit "OCR Document Search";
-                        SearchResults: Record "OCR Search Results" temporary;
                         SearchResultsPage: Page "OCR Search Results";
                         SearchText: Text[100];
                     begin
@@ -54,10 +54,10 @@ pageextension 80100 "CDC Document OCR Ext" extends "GES CDC DragDrop and Scan Fa
                             exit;
 
                         // Ejecutar búsqueda
-                        if OCRSearch.SearchInDocument(Rec."No.", SearchText, SearchResults) then begin
-                            SearchResultsPage.SetTableView(SearchResults);
+                        if OCRSearch.SearchInDocument(Rec."No.", SearchText, TEMPSearchResults) then begin
+                            SearchResultsPage.SetTableView(TEMPSearchResults);
                             SearchResultsPage.RunModal();
-                            Message('Se encontraron %1 coincidencia(s)', SearchResults.Count());
+                            Message('Se encontraron %1 coincidencia(s)', TEMPSearchResults.Count());
                         end else
                             Message('No se encontraron coincidencias');
                     end;
