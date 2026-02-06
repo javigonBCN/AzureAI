@@ -1,0 +1,50 @@
+{
+  "id": "9a3c7e5e-70c8-40e5-aa90-c4efba2ce5db",
+  "name": "OCR Document Finder",
+  "publisher": "Grup Escudero",
+  "version": "26.0.0.0",
+  "brief": "Developments for Grup Escudero for Azure AI Document Intelligence",
+  "description": "Developments for Grup Escudero usando Azure AI Document Intelligence",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+   "logo": "",
+  "dependencies": [
+        {
+      "id": "6da8dd2f-e698-461f-9147-8e404244dd85",
+      "publisher": "Continia Software",
+      "name": "Continia Document Capture",
+      "version": "26.4.0.425407"
+    },
+    {
+      "id": "4b915d7e-c02a-435f-85ab-649086c1e002",
+      "publisher": "Continia Software",
+      "name": "Continia Core",
+      "version": "26.4.0.421844"
+    },
+    {
+    "id": "d8ec1044-8199-4a31-bf89-a118ffc226e8",
+    "name": "GES Base",
+    "publisher": "Grup Escudero",
+    "version": "26.0.0.0"
+  }
+
+  ],
+  "screenshots": [],
+  "platform": "26.0.0.0",
+  "application": "26.0.0.0",
+  "idRanges": [
+    {
+      "from": 80100,
+      "to": 80149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "15.2",
+  "features": ["NoImplicitWith","TranslationFile","NoPromotedActionProperties"]
+}

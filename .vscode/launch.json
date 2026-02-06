@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ESCUDERO DEV 5",
+            "type": "al",
+            "request": "launch",
+            "server": "http://192.168.2.31:8080/ESCUDERO_DEV_5/",
+            "port": 7549,
+            "serverInstance": "ESCUDERO_DEV_5",
+            "authentication": "Windows",
+            "launchBrowser": true,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements": true,
+            "schemaUpdateMode": "ForceSync",
+            "startupObjectId": 80102,
+            "startupObjectType": "Page",
+            "breakOnError": true
+        }
+    ]
+}

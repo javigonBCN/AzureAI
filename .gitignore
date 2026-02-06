@@ -1,0 +1,40 @@
+# AL Language for Business Central
+
+# Build results
+.alpackages/
+.alcache/
+*.app
+rad.json
+
+# VS Code
+.vscode/*
+!.vscode/launch.json
+.history/
+
+# Snapshots
+.snapshots/
+
+# Package output
+*.app
+
+# Local settings
+.altestrunner/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options
+.vs/
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Others
+.DS_Store
+Thumbs.db
