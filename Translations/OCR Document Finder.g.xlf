@@ -3,26 +3,6 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="OCR Document Finder">
     <body>
       <group id="body">
-        <trans-unit id="PageExtension 1719383605 - Action 2125466501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
-          <source>OCR Azure</source>
-          <note from="Developer" annotates="general" priority="2">ESP="OCR Azure"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRActions - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 1719383605 - Action 810010796 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
-          <source>Search for specific lines in this document using Azure AI OCR</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Buscar líneas específicas en este documento usando Azure AI OCR"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRSearch - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 1719383605 - Action 810010796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
-          <source>Search with OCR</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Buscar con OCR"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRSearch - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 871564246 - Control 1719383605 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 871564246">
-          <source>Attached Files</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Archivos adjuntos"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Warehouse Receipts - Control CDC Document Files Factbox - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 62618801 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Azure AI Configuration</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -48,6 +28,26 @@
           <note from="Developer" annotates="general" priority="2">ESP="API Versión"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field API Version - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 62618801 - Field 675241992 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Azure AI Document Intelligence API Version</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Versión de la API de Azure AI Document Intelligence"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field API Version PDF Searchable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 675241992 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Version</source>
+          <note from="Developer" annotates="general" priority="2">ESP="API Versión"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field API Version PDF Searchable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 2786016701 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Descargar automáticamente el archivo procesado</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Auto Download - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 2786016701 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Auto Download After Processing</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Autodescarga despues de proceso"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Auto Download - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 62618801 - Field 2891538263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Enabled</source>
           <note from="Developer" annotates="general" priority="2">ESP="Habilitado"</note>
@@ -63,6 +63,16 @@
           <note from="Developer" annotates="general" priority="2">ESP="Azure Endpoint URL"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Endpoint URL - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 62618801 - Field 2230553714 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>URL del endpoint de Azure AI Document Intelligence</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Endpoint URL PDF Searchable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 2230553714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Endpoint URL PDF Searchable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Endpoint URL PDF Searchable - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 62618801 - Field 4202864534 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>ID of the model to use (prebuilt-invoice, prebuilt-receipt, or custom model)</source>
           <note from="Developer" annotates="general" priority="2">ESP="ID del modelo a utilizar (prebuilt-invoice, prebuilt-receipt, o modelo personalizado)"</note>
@@ -72,6 +82,21 @@
           <source>Document Model ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Model ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 3740851728 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Formato del PDF de salida (PDF estándar o PDF/A para archivo)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Output Format - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 3740851728 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Output Format</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Formato de salida"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Output Format - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 3740851728 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PDF,PDF/A (Archival)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Output Format - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 62618801 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
@@ -87,6 +112,91 @@
           <source>Timeout (seconds)</source>
           <note from="Developer" annotates="general" priority="2">ESP="Tiempo de espera (segundos)"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Timeout Seconds - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OCR Conversion History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 3042328889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Average Confidence %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Average Confidence - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 1813864787 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Conversion Date Time</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Conversion DateTime - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 2852966117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error Message</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Error Message - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 2579579925 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>File Size (KB)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field File Size (KB) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 3004095410 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>File Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field File Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 3004095410 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PDF,Image</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field File Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 3686793252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Original Filename</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Original Filename - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 1925831875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Output File</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Output File - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 1406204930 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Output Filename</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Output Filename - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 979564222 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pages Processed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Pages Processed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 379637278 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing Time (seconds)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Processing Time (sec) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 513339096 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Success,Failed,Processing,Timeout</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Status - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field User ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 671667296 - Field 61886085 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Words Detected</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Conversion History - Field Words Detected - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 4208074897 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>OCR Operation Log</source>
@@ -278,6 +388,21 @@
           <note from="Developer" annotates="general" priority="2">ESP="Debe ingresar un texto a buscar"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Document Search - Method SearchInDocument - NamedType SearchTextErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 1007491430 - NamedType 2389531293" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error connecting to Azure AI Document Intelligence</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Error al conectar con Azure AI Document Intelligence"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ConvertToPDFWithOCR - NamedType ConnectionErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 1007491430 - NamedType 856013284" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No Operation-Location was received from Azure, which is the entity that processes the OCR.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="No se recibió Operation-Location de Azure, que es quien procesa el OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ConvertToPDFWithOCR - NamedType OperLocationErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 1178923586 - NamedType 125578617" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Azure AI Document Intelligence is disabled. Enable it in the settings.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Azure AI Document Intelligence está deshabilitado. Habilítelo en la configuración."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ValidateConfiguration - NamedType ConfigErr</note>
+        </trans-unit>
         <trans-unit id="Page 62618801 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Azure AI Document Intelligence Configuration</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -317,6 +442,36 @@
           <source>ID del modelo a utilizar (prebuilt-invoice, prebuilt-receipt, o un modelo personalizado)</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Model ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 593408208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Download PDF OCR</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Descarga PDF OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Download - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 504867845 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key de Azure AI Document Intelligence</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control API Key PDF OCR - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 675241992 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Versión de la API de Azure AI</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control API Version PDF Searchable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 2786016701 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Descargar automáticamente el PDF después de procesar</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Auto Download - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 2230553714 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>URL del endpoint de Azure AI Document Intelligence</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Endpoint URL PDF Searchable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 3740851728 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Formato del PDF de salida</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Output Format - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 62618801 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
@@ -527,6 +682,16 @@
           <source>Limpiar</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Action ClearSearch - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2384498813 - Action 3646731005 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Descarga el documento en PDF con bucador de OCR</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Action Download Document - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2384498813 - Action 3646731005 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Descargar documento con OCR</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Document Finder - Action Download Document - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2384498813 - Action 782762290 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Analizar el documento con Azure AI y buscar el texto especificado</source>
@@ -1017,6 +1182,36 @@
           <source>Show Full Line Text</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Search Results - Action ShowFullText - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1719383605 - Action 2125466501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
+          <source>OCR Azure</source>
+          <note from="Developer" annotates="general" priority="2">ESP="OCR Azure"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRActions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1719383605 - Action 1499673724 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
+          <source>Download this document PDF OCR using Azure AI OCR</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Descargar documento PDF OCR usando Azure AI OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRDowloadPDFOCR - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1719383605 - Action 1499673724 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
+          <source>Download PDF OCR</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Dowload PDF OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRDowloadPDFOCR - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1719383605 - Action 810010796 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
+          <source>Search for specific lines in this document using Azure AI OCR</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Buscar líneas específicas en este documento usando Azure AI OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRSearch - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1719383605 - Action 810010796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1719383605">
+          <source>Search with OCR</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Buscar con OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CDC Document Files Factbox - Action OCRSearch - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 871564246 - Control 1719383605 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 871564246">
+          <source>Attached Files</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Archivos adjuntos"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Warehouse Receipts - Control CDC Document Files Factbox - Property Caption</note>
         </trans-unit>
       </group>
     </body>

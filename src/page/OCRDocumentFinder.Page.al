@@ -174,6 +174,22 @@ page 80102 "OCR Document Finder"
                     CurrPage.Update(false);
                 end;
             }
+            action("Download Document")
+            {
+                ApplicationArea = All;
+                Caption = 'Descargar documento con OCR';
+                Image = Find;
+                ToolTip = 'Descarga el documento en PDF con bucador de OCR';
+                trigger OnAction()
+                var
+                    OCRPDFConverter: Codeunit "OCR PDF Converter";
+                begin
+                    if DocumentNo = '' then
+                        Error('Debe seleccionar un documento');
+
+                    OCRPDFConverter.ProcessDocument(DocumentNo);
+                end;
+            }
 
             action(ViewDocument)
             {
@@ -231,6 +247,7 @@ page 80102 "OCR Document Finder"
 
         area(Promoted)
         {
+            actionref("Download Document Ref"; "Download Document") { }
             actionref(SearchRef; Search) { }
             actionref(ClearRef; ClearSearch) { }
             actionref(ViewDocRef; ViewDocument) { }

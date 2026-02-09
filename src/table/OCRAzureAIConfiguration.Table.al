@@ -58,6 +58,42 @@ table 80100 "OCR Azure AI Configuration"
             Caption = 'Enabled', Comment = 'ESP="Habilitado"';
             InitValue = true;
         }
+        field(10; "Endpoint URL PDF Searchable"; Text[250])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Endpoint URL PDF Searchable';
+            ToolTip = 'URL del endpoint de Azure AI Document Intelligence';
+
+            trigger OnValidate()
+            begin
+                if "Endpoint URL PDF Searchable" <> '' then
+                    "Endpoint URL PDF Searchable" := DelChr("Endpoint URL PDF Searchable", '>', '/');
+            end;
+        }
+        field(12; "API Version PDF Searchable"; Text[20])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'API Version', Comment = 'ESP="API Versión"';
+            InitValue = '2024-11-30';
+            ToolTip = 'Azure AI Document Intelligence API Version', Comment = 'ESP="Versión de la API de Azure AI Document Intelligence"';
+        }
+        field(13; "Output Format"; Option)
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Output Format', Comment = 'ESP="Formato de salida"';
+            OptionMembers = PDF,PDFA;
+            OptionCaption = 'PDF,PDF/A (Archival)';
+            InitValue = PDF;
+            ToolTip = 'Formato del PDF de salida (PDF estándar o PDF/A para archivo)';
+        }
+        field(15; "Auto Download"; Boolean)
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Auto Download After Processing', Comment = 'ESP="Autodescarga despues de proceso"';
+            InitValue = true;
+            ToolTip = 'Descargar automáticamente el archivo procesado';
+        }
+
     }
 
     keys
@@ -68,12 +104,12 @@ table 80100 "OCR Azure AI Configuration"
         }
     }
 
-    procedure GetInstance(var AzureConfig: Record "OCR Azure AI Configuration")
+    procedure GetInstance()
     begin
-        if not AzureConfig.Get() then begin
-            AzureConfig.Init();
-            AzureConfig."Primary Key" := '';
-            AzureConfig.Insert();
+        if not Rec.Get() then begin
+            Rec.Init();
+            Rec."Primary Key" := '';
+            Rec.Insert();
         end;
     end;
 

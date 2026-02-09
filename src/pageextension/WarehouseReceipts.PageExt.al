@@ -1,7 +1,3 @@
-namespace AzureAI.AzureAI;
-
-using Microsoft.Warehouse.Document;
-
 pageextension 80102 "Warehouse Receipts" extends "Warehouse Receipts"
 {
     layout

@@ -17,7 +17,7 @@ codeunit 80100 "OCR Azure Doc Intelligence"
         OperLocationErr: Label 'No Operation-Location was received from Azure, which is the entity that processes the OCR.', Comment = 'ESP="No se recibió Operation-Location de Azure, que es quien procesa el OCR"';
     begin
         // Validar configuración
-        AzureConfig.GetInstance(AzureConfig);
+        AzureConfig.GetInstance();
         ValidateConfiguration(AzureConfig);
 
         // Preparar el contenido del blob

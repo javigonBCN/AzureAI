@@ -64,6 +64,43 @@ page 80100 "OCR Azure AI Configuration"
                     ToolTip = 'Versión de la API de Azure AI';
                 }
             }
+            group(Download)
+            {
+
+                Caption = 'Download PDF OCR', Comment = 'ESP="Descarga PDF OCR"';
+                field("Endpoint URL PDF Searchable"; Rec."Endpoint URL PDF Searchable")
+                {
+                    ApplicationArea = All;
+                    ShowMandatory = true;
+                    ToolTip = 'URL del endpoint de Azure AI Document Intelligence';
+                }
+
+                field("API Key PDF OCR"; Rec."API Key")
+                {
+                    ApplicationArea = All;
+                    ShowMandatory = true;
+                    ExtendedDatatype = Masked;
+                    ToolTip = 'API Key de Azure AI Document Intelligence';
+                }
+
+                field("API Version PDF Searchable"; Rec."API Version PDF Searchable")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Versión de la API de Azure AI';
+                }
+
+                field("Auto Download"; Rec."Auto Download")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Descargar automáticamente el PDF después de procesar';
+                }
+
+                field("Output Format"; Rec."Output Format")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Formato del PDF de salida';
+                }
+            }
 
             group(Advanced)
             {
