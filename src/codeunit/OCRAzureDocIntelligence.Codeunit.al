@@ -20,7 +20,7 @@ codeunit 80100 "OCR Azure Doc Intelligence"
         AzureConfig.GetInstance(AzureConfig);
         ValidateConfiguration(AzureConfig);
 
-        // Preparar el contenido del PDF
+        // Preparar el contenido del blob
         TempBlob.CreateInStream(InStr);
         HttpContent.WriteFrom(InStr);
         HttpContent.GetHeaders(Headers);

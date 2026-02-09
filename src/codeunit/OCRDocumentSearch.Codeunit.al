@@ -8,20 +8,21 @@ codeunit 80101 "OCR Document Search"
         TotalLinesFound: Integer;
         Success: Boolean;
         ErrorMsg: Text;
+        DocumentCaptErr: label 'You must specify a document to scan', Comment = 'ESP="Debe especificar un documento a escanear"';
+        SearchTextErr: Label 'You must enter a text to search for', Comment = 'ESP="Debe ingresar un texto a buscar"';
     begin
         StartTime := CurrentDateTime;
         Success := false;
         ErrorMsg := '';
 
         if DocumentCaptureNo = '' then
-            Error('Debe especificar un número de documento');
+            Error(DocumentCaptErr);
 
         if SearchText = '' then
-            Error('Debe ingresar un texto a buscar');
+            Error(SearchTextErr);
 
-        //try TODO
         // Obtener y analizar el documento desde Continia
-        JsonResponse := AnalyzeContiniaPDF(DocumentCaptureNo);
+        JsonResponse := AnalyzeContinia(DocumentCaptureNo);
 
         ClearLastError();
         if JsonResponse <> '' then begin
@@ -47,12 +48,12 @@ codeunit 80101 "OCR Document Search"
         exit(SearchResults.FindFirst());
     end;
 
-    local procedure AnalyzeContiniaPDF(DocumentCaptureNo: Code[20]): Text
+    local procedure AnalyzeContinia(DocumentCaptureNo: Code[20]): Text
     var
         TempBlob: Codeunit "Temp Blob";
         AzureDocIntelligence: Codeunit "OCR Azure Doc Intelligence";
     begin
-        // Extraer el PDF de Continia Document Capture
+        // Extraer el documento de Continia Document Capture
         ExtractContiniaDocument(DocumentCaptureNo, TempBlob);
 
         // Enviar a Azure AI Document Intelligence

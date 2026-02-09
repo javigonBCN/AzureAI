@@ -26,7 +26,6 @@ page 80102 "OCR Document Finder"
                     var
                         DCDocuments: Record "CDC Document";
                     begin
-                        //DCDocuments.SetRange(Status, DCDocuments.Status::Registered, DCDocuments.Status::Released);
                         if Page.RunModal(page::"OCR Document", DCDocuments) = Action::LookupOK then begin
                             DocumentNo := DCDocuments."No.";
                             DocumentDescription := DCDocuments.Description;
@@ -179,10 +178,9 @@ page 80102 "OCR Document Finder"
             action(ViewDocument)
             {
                 ApplicationArea = All;
-                Caption = 'Ver Documento PDF';
+                Caption = 'Ver Documento';
                 Image = Document;
-                ToolTip = 'Abrir el documento PDF de Continia';
-                Enabled = HasPDF;
+                ToolTip = 'Abrir el documento de Continia';
 
                 trigger OnAction()
                 var
@@ -197,7 +195,7 @@ page 80102 "OCR Document Finder"
                     if not DCDocuments.Get(DocumentNo) then
                         exit;
 
-                    // Si el documento tiene un campo Blob con el PDF
+                    // Si tiene documento coger el blob del documento.
                     if DCDocuments.HasMiscFile() then
                         DCDocuments.GetMiscFile(TempFile);
 
@@ -241,7 +239,7 @@ page 80102 "OCR Document Finder"
 
     trigger OnOpenPage()
     begin
-        SearchExamplesText := 'Ejemplos de búsqueda:\- Código de producto: "12345"\- Descripción: "TORNILLO"\- Cantidad: "100"\- Precio: "25.50"';
+        SearchExamplesText := 'Ejemplos de búsqueda:\- Código de producto: "12345"\- Descripción: "TORNILLO"\- Cantidad: "100"\- Precio: "25,50"';
     end;
 
     local procedure ValidateSearch()
@@ -251,9 +249,6 @@ page 80102 "OCR Document Finder"
 
         if SearchText = '' then
             Error('Debe ingresar un texto a buscar');
-
-        if not HasPDF then
-            Error('El documento seleccionado no tiene PDF adjunto');
     end;
 
     local procedure UpdateDocumentInfo()
@@ -261,15 +256,12 @@ page 80102 "OCR Document Finder"
         DCDocuments: Record "CDC Document";
     begin
         Clear(DocumentDescription);
-        HasPDF := false;
 
         if DocumentNo = '' then
             exit;
 
-        if DCDocuments.Get(DocumentNo) then begin
-            IF DCDocuments."File Extension" = 'pdf' then
-                HasPDF := true;
-        end;
+        if DCDocuments.Get(DocumentNo) then
+            DocumentDescription := DCDocuments.Description;
 
         CurrPage.Update(false);
     end;
@@ -295,7 +287,6 @@ page 80102 "OCR Document Finder"
         DocumentNo: Code[20];
         SearchText: Text[100];
         DocumentDescription: Text[250];
-        HasPDF: Boolean;
         SearchPerformed: Boolean;
         ResultsCount: Integer;
         TotalLinesAnalyzed: Integer;

@@ -12,55 +12,55 @@ table 80101 "OCR Search Results"
         }
         field(2; "Line No."; Integer)
         {
-            Caption = 'Línea Nº';
+            Caption = 'Line No.', Comment = 'ESP="Nº Línea"';
         }
         field(3; Description; Text[250])
         {
-            Caption = 'Descripción';
+            Caption = 'Description', Comment = 'ESP="Descripción"';
         }
         field(4; "Product Code"; Text[50])
         {
-            Caption = 'Código Producto';
+            Caption = 'Product Code', Comment = 'ESP="Código Producto"';
         }
         field(5; Quantity; Text[50])
         {
-            Caption = 'Cantidad';
+            Caption = 'Quantity', Comment = 'ESP="Cantidad"';
         }
         field(6; "Unit Price"; Text[50])
         {
-            Caption = 'Precio Unitario';
+            Caption = 'Unit Price', Comment = 'ESP="Precio Unitario"';
         }
         field(7; Amount; Text[50])
         {
-            Caption = 'Importe';
+            Caption = 'Amount', Comment = 'ESP="Importe"';
         }
         field(8; "Match Found In"; Text[100])
         {
-            Caption = 'Coincidencia en Campo(s)';
+            Caption = 'Match Found In', Comment = 'ESP="Coincidencia en Campo(s)"';
         }
         field(9; "Unit of Measure"; Text[20])
         {
-            Caption = 'Unidad de Medida';
+            Caption = 'Unit of Measure', Comment = 'ESP="Unidad de Medida"';
         }
         field(10; Date; Text[20])
         {
-            Caption = 'Fecha';
+            Caption = 'Date', Comment = 'ESP="Fecha"';
         }
         field(11; "Tax Amount"; Text[50])
         {
-            Caption = 'Importe IVA';
+            Caption = 'Tax Amount', Comment = 'ESP="Importe IVA"';
         }
         field(12; "Tax Rate"; Text[20])
         {
-            Caption = '% IVA';
+            Caption = 'Tax Rate', Comment = 'ESP="% IVA"';
         }
         field(13; "Full Line Text"; Text[2048])
         {
-            Caption = 'Texto Completo de la Línea';
+            Caption = 'Full Line Text', Comment = 'ESP="Texto Completo de la Línea"';
         }
         field(14; "Confidence Score"; Decimal)
         {
-            Caption = 'Nivel de Confianza';
+            Caption = 'Confidence Score', Comment = 'ESP="Nivel de Confianza"';
             DecimalPlaces = 2 : 2;
         }
     }

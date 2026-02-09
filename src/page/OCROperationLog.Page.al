@@ -31,15 +31,13 @@ page 80103 "OCR Operation Log"
                     ApplicationArea = All;
                     ToolTip = ' ', Comment = 'ESP=" "';
 
-                    //TODO
-                    // trigger OnDrillDown()
-                    // var
-                    //     DCDocuments: Record "CDC Document";
-                    // begin
-                    //     if DCDocuments.Get(Rec."Document No.") then begin
-                    //         Page.Run(Page::"CDC Document", DCDocuments);
-                    //     end;
-                    // end;
+                    trigger OnDrillDown()
+                    var
+                        DCDocuments: Record "CDC Document";
+                    begin
+                        if DCDocuments.Get(Rec."Document No.") then
+                            Page.Run(Page::"OCR Document", DCDocuments);
+                    end;
                 }
                 field("Operation Type"; Rec."Operation Type")
                 {

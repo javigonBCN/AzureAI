@@ -15,12 +15,12 @@
 │           ▼                                                      │
 │  ┌──────────────────┐         ┌──────────────────┐             │
 │  │  Business Logic  │◄────────┤   Configuration  │             │
-│  │   (Codeunits)    │         │   (Table 50100)  │             │
+│  │   (Codeunits)    │         │   (Table 80100)  │             │
 │  └────────┬─────────┘         └──────────────────┘             │
 │           │                                                      │
 │           │                   ┌──────────────────┐             │
 │           └──────────────────►│  Operation Log   │             │
-│                               │  (Table 50102)   │             │
+│                               │  (Table 80102)   │             │
 │                               └──────────────────┘             │
 │                                                                  │
 └───────────────────┬──────────────────────────────────────────────┘
@@ -59,12 +59,12 @@ Usuario → OCR Document Finder (Page 50102)
 
 ### 2. Procesamiento
 ```
-OCR Document Search (Codeunit 50101)
+OCR Document Search (Codeunit 80101)
   │
   ├─► Extrae PDF de CDC Document
   │    └─► Campo "PDF File" (BLOB)
   │
-  ├─► OCR Azure Doc Intelligence (Codeunit 50100)
+  ├─► OCR Azure Doc Intelligence (Codeunit 80100)
   │    ├─► POST /formrecognizer/documentModels/prebuilt-invoice:analyze
   │    │    └─► Headers: Ocp-Apim-Subscription-Key, Content-Type: application/pdf
   │    │
@@ -79,21 +79,21 @@ OCR Document Search (Codeunit 50101)
   ├─► Busca coincidencias (case-insensitive)
   │    └─► En campos: Description, ProductCode, Quantity, UnitPrice, Amount
   │
-  ├─► Genera resultados (Tabla Temporal 50101)
+  ├─► Genera resultados (Tabla Temporal 80101)
   │    └─► Con: Line No., Description, Amounts, Match Fields, Confidence
   │
-  └─► Crea Log Entry (Tabla 50102)
+  └─► Crea Log Entry (Tabla 80102)
        └─► Timestamp, Document, Search Text, Results, Time, User
 ```
 
 ### 3. Presentación de Resultados
 ```
-OCR Search Results (Page 50101)
+OCR Search Results (Page 80101)
   │
   ├─► Lista de coincidencias
   │    └─► Colores según nivel de confianza
   │
-  ├─► FactBox con detalle (Page 50104)
+  ├─► FactBox con detalle (Page 80104)
   │    └─► Info completa de línea seleccionada
   │
   └─► Acción: Export to Excel

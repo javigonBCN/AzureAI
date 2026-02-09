@@ -8,13 +8,13 @@ table 80100 "OCR Azure AI Configuration"
         field(1; "Primary Key"; Code[10])
         {
             DataClassification = SystemMetadata;
-            Caption = 'Primary Key';
+            Caption = 'Primary Key', Comment = 'ESP="Clave Primaria"';
         }
         field(2; "Endpoint URL"; Text[250])
         {
             DataClassification = CustomerContent;
-            Caption = 'Azure Endpoint URL';
-            ToolTip = 'URL del endpoint de Azure AI Document Intelligence (ej: https://yourresource.cognitiveservices.azure.com)';
+            Caption = 'Azure Endpoint URL', Comment = 'ESP="Azure Endpoint URL"';
+            ToolTip = 'Azure AI Document Intelligence endpoint URL (ex: https://yourresource.cognitiveservices.azure.com)', Comment = 'ESP="URL del endpoint de Azure AI Document Intelligence (ej: https://yourresource.cognitiveservices.azure.com)"';
 
             trigger OnValidate()
             begin
@@ -25,37 +25,37 @@ table 80100 "OCR Azure AI Configuration"
         field(3; "API Key"; Text[100])
         {
             DataClassification = EndUserIdentifiableInformation;
-            Caption = 'API Key';
+            Caption = 'API Key', Comment = 'ESP="API Key"';
             ExtendedDatatype = Masked;
-            ToolTip = 'API Key de Azure AI Document Intelligence';
+            ToolTip = 'Azure AI Document Intelligence API Key', Comment = 'ESP="API Key de Azure AI Document Intelligence"';
         }
         field(4; "Model ID"; Text[50])
         {
             DataClassification = CustomerContent;
             Caption = 'Document Model ID';
             InitValue = 'prebuilt-invoice';
-            ToolTip = 'ID del modelo a utilizar (prebuilt-invoice, prebuilt-receipt, o modelo personalizado)';
+            ToolTip = 'ID of the model to use (prebuilt-invoice, prebuilt-receipt, or custom model)', Comment = 'ESP="ID del modelo a utilizar (prebuilt-invoice, prebuilt-receipt, o modelo personalizado)"';
         }
         field(5; "API Version"; Text[20])
         {
             DataClassification = CustomerContent;
-            Caption = 'API Version';
+            Caption = 'API Version', Comment = 'ESP="API Versión"';
             InitValue = '2023-07-31';
-            ToolTip = 'Versión de la API de Azure AI Document Intelligence';
+            ToolTip = 'Azure AI Document Intelligence API Version', Comment = 'ESP="Versión de la API de Azure AI Document Intelligence"';
         }
         field(6; "Timeout Seconds"; Integer)
         {
             DataClassification = CustomerContent;
-            Caption = 'Timeout (seconds)';
+            Caption = 'Timeout (seconds)', Comment = 'ESP="Tiempo de espera (segundos)"';
             InitValue = 120;
             MinValue = 30;
             MaxValue = 300;
-            ToolTip = 'Tiempo máximo de espera para la respuesta de Azure AI';
+            ToolTip = 'Maximum wait time for Azure AI response', Comment = 'ESP="Tiempo máximo de espera para la respuesta de Azure AI"';
         }
         field(7; Enabled; Boolean)
         {
             DataClassification = CustomerContent;
-            Caption = 'Enabled';
+            Caption = 'Enabled', Comment = 'ESP="Habilitado"';
             InitValue = true;
         }
     }
