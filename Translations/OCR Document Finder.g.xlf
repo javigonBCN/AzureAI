@@ -34,8 +34,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field API Version PDF Searchable - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 62618801 - Field 675241992 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>API Version</source>
-          <note from="Developer" annotates="general" priority="2">ESP="API Versión"</note>
+          <source>API Version PDF Searchable</source>
+          <note from="Developer" annotates="general" priority="2">ESP="API Versión PDF Searchable"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field API Version PDF Searchable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 62618801 - Field 2786016701 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -80,8 +80,18 @@
         </trans-unit>
         <trans-unit id="Table 62618801 - Field 4202864534 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document Model ID</source>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2">ESP="ID Modelo documento"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Model ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 4216978728 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID of the model to use (prebuilt-read or custom model)</source>
+          <note from="Developer" annotates="general" priority="2">ESP="ID del modelo a utilizar (prebuilt-read o modelo personalizado)"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Model ID PDF Searchable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 62618801 - Field 4216978728 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Model ID PDF Searchable</source>
+          <note from="Developer" annotates="general" priority="2">ESP="ID Modelo documento PDF OCR"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table OCR Azure AI Configuration - Field Model ID PDF Searchable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 62618801 - Field 3740851728 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Formato del PDF de salida (PDF estándar o PDF/A para archivo)</source>
@@ -388,6 +398,11 @@
           <note from="Developer" annotates="general" priority="2">ESP="Debe ingresar un texto a buscar"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR Document Search - Method SearchInDocument - NamedType SearchTextErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 3251174648 - NamedType 2635010688" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OCR processing failed in Azure AI</source>
+          <note from="Developer" annotates="general" priority="2">ESP="El procesamiento OCR falló en Azure AI"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method CheckIfStillProcessing - NamedType AzureAIErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1390312152 - Method 1007491430 - NamedType 2389531293" size-unit="char" translate="yes" xml:space="preserve">
           <source>Error connecting to Azure AI Document Intelligence</source>
           <note from="Developer" annotates="general" priority="2">ESP="Error al conectar con Azure AI Document Intelligence"</note>
@@ -397,6 +412,41 @@
           <source>No Operation-Location was received from Azure, which is the entity that processes the OCR.</source>
           <note from="Developer" annotates="general" priority="2">ESP="No se recibió Operation-Location de Azure, que es quien procesa el OCR"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ConvertToPDFWithOCR - NamedType OperLocationErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 1007491430 - NamedType 1865496565" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error in AI Azure: %1 - %2\%3</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Error en Azure AI: %1 - %2\%3"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ConvertToPDFWithOCR - NamedType AzuErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 1007491430 - NamedType 3953340345" size-unit="char" translate="yes" xml:space="preserve">
+          <source>To generate searchable PDFs, you need API Version 2024-11-30 or higher. Update your settings to the correct version.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Para generar PDF searchable necesita API Version 2024-11-30 o superior.\Actualice la configuración con la versión correcta."</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ConvertToPDFWithOCR - NamedType VersionErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 2787116685 - NamedType 3351274" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document %1 not found in CDC</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Documento %1 no encontrado en CDC"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ExtractContiniaDocument - NamedType NotFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 2787116685 - NamedType 2550656545" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attachment Document %1 not found</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Documento adjunto %1 no encontrado en CDC"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ExtractContiniaDocument - NamedType NotFoundAzureErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 3505544492 - NamedType 149879980" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process OCR and generate PDF searchable...\\Attempt #1######## of #2########</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Procesando OCR y generando PDF con OCR...\\Intento #1######## de #2########"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method GetSearchablePDF - NamedType DialogTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 1530529496 - NamedType 3351274" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document %1 not found in CDC</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Documento %1 no encontrado en CDC"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method ReplaceOriginalPDFInCDC - NamedType NotFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1390312152 - Method 2438497290 - NamedType 3351274" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document %1 not found in CDC</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Documento %1 no encontrado en CDC"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OCR PDF Converter - Method SaveProcessedPDFToCDC - NamedType NotFoundErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 1390312152 - Method 1178923586 - NamedType 125578617" size-unit="char" translate="yes" xml:space="preserve">
           <source>Azure AI Document Intelligence is disabled. Enable it in the settings.</source>
@@ -467,6 +517,11 @@
           <source>URL del endpoint de Azure AI Document Intelligence</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Endpoint URL PDF Searchable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 62618801 - Control 4216978728 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID del modelo a utilizar (prebuilt-read o un modelo personalizado)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page OCR Azure AI Configuration - Control Model ID PDF Searchable - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 62618801 - Control 3740851728 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Formato del PDF de salida</source>

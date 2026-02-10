@@ -32,7 +32,7 @@ table 80100 "OCR Azure AI Configuration"
         field(4; "Model ID"; Text[50])
         {
             DataClassification = CustomerContent;
-            Caption = 'Document Model ID';
+            Caption = 'Document Model ID', Comment = 'ESP="ID Modelo documento"';
             InitValue = 'prebuilt-invoice';
             ToolTip = 'ID of the model to use (prebuilt-invoice, prebuilt-receipt, or custom model)', Comment = 'ESP="ID del modelo a utilizar (prebuilt-invoice, prebuilt-receipt, o modelo personalizado)"';
         }
@@ -70,10 +70,17 @@ table 80100 "OCR Azure AI Configuration"
                     "Endpoint URL PDF Searchable" := DelChr("Endpoint URL PDF Searchable", '>', '/');
             end;
         }
+        field(11; "Model ID PDF Searchable"; Text[50])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Document Model ID PDF Searchable', Comment = 'ESP="ID Modelo documento PDF OCR"';
+            InitValue = 'prebuilt-read';
+            ToolTip = 'ID of the model to use (prebuilt-read or custom model)', Comment = 'ESP="ID del modelo a utilizar (prebuilt-read o modelo personalizado)"';
+        }
         field(12; "API Version PDF Searchable"; Text[20])
         {
             DataClassification = CustomerContent;
-            Caption = 'API Version', Comment = 'ESP="API Versión"';
+            Caption = 'API Version PDF Searchable', Comment = 'ESP="API Versión PDF Searchable"';
             InitValue = '2024-11-30';
             ToolTip = 'Azure AI Document Intelligence API Version', Comment = 'ESP="Versión de la API de Azure AI Document Intelligence"';
         }

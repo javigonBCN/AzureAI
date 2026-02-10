@@ -41,13 +41,11 @@ pageextension 80101 "CDC Document Files Factbox" extends "CDC Document Files Fac
                     trigger OnAction()
                     var
                         CDCDocument: Record "CDC Document";
-                        OCRDocFinder: Page "OCR Document Finder";
+                        OCRPDFConverter: Codeunit "OCR PDF Converter";
                     begin
-                        if CDCDocument.get(Rec."No.") then begin
-                            // Abrir la página de búsqueda con el documento actual preseleccionado
-                            OCRDocFinder.SetDocumentNo(CDCDocument."No.");
-                            OCRDocFinder.Run();
-                        end;
+                        if CDCDocument.get(Rec."No.") then
+                            OCRPDFConverter.ProcessDocument(CDCDocument."No.");
+                        CurrPage.Update(true);
                     end;
                 }
             }

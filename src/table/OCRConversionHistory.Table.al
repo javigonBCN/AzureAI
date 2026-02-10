@@ -97,8 +97,9 @@ table 80111 "OCR Conversion History"
     var
         ConversionHistory: Record "OCR Conversion History";
         CutoffDate: DateTime;
+        DateFormTxt: Label '<-%1D>', Locked = true;
     begin
-        CutoffDate := CreateDateTime(CalcDate(StrSubstNo('<-%D>', DaysToKeep), Today), 0T);
+        CutoffDate := CreateDateTime(CalcDate(StrSubstNo(DateFormTxt, DaysToKeep), Today), 0T);
 
         ConversionHistory.SetFilter("Conversion DateTime", '<%1', CutoffDate);
         if ConversionHistory.FindSet() then

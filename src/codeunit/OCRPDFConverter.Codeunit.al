@@ -7,7 +7,7 @@ codeunit 80110 "OCR PDF Converter"
         FileName: text;
     begin
         ExtractContiniaDocument(DocumentNo, TempBlob, FileName);
-        ConvertToPDFWithOCR(TempBlob);
+        ConvertToPDFWithOCR(DocumentNo, TempBlob, FileName);
     end;
 
     local procedure ExtractContiniaDocument(DocumentNo: Code[20]; var TempBlob: Codeunit "Temp Blob"; var FileName: Text)
@@ -16,13 +16,17 @@ codeunit 80110 "OCR PDF Converter"
         TempFile: Record "CDC Temp File" temporary;
         InStr: InStream;
         OutStr: OutStream;
+        NotFoundErr: Label 'Document %1 not found in CDC', Comment = 'ESP="Documento %1 no encontrado en CDC"';
+        NotFoundAzureErr: Label 'Attachment Document %1 not found', Comment = 'ESP="Documento adjunto %1 no encontrado en CDC"';
     begin
         // Buscar el documento en Continia
         if not DCDocuments.Get(DocumentNo) then
-            Error('Documento no encontrado en Continia: %1', DocumentNo);
+            Error(NotFoundErr, DocumentNo);
 
         if DCDocuments.HasMiscFile() then
-            DCDocuments.GetMiscFile(TempFile);
+            DCDocuments.GetMiscFile(TempFile)
+        else
+            Error(NotFoundAzureErr, DocumentNo);
 
         FileName := TempFile.Name;
         TempFile.GetDataStream(InStr);
@@ -31,7 +35,7 @@ codeunit 80110 "OCR PDF Converter"
         CopyStream(OutStr, InStr);
     end;
 
-    procedure ConvertToPDFWithOCR(var TempBlob: Codeunit "Temp Blob"): Boolean
+    procedure ConvertToPDFWithOCR(DocumentNo: Code[20]; var TempBlob: Codeunit "Temp Blob"; FileName: Text): Boolean
     var
         AzureConfig: Record "OCR Azure AI Configuration";
         HttpClient: HttpClient;
@@ -46,10 +50,10 @@ codeunit 80110 "OCR PDF Converter"
         Success: Boolean;
         ErrorMsg: Text;
         InStr: InStream;
-        OutStr: OutStream;
-        OutputFile: OutStream;
         ConnectionErr: Label 'Error connecting to Azure AI Document Intelligence', Comment = 'ESP="Error al conectar con Azure AI Document Intelligence"';
         OperLocationErr: Label 'No Operation-Location was received from Azure, which is the entity that processes the OCR.', Comment = 'ESP="No se recibió Operation-Location de Azure, que es quien procesa el OCR"';
+        AzuErr: Label 'Error in AI Azure: %1 - %2\%3', Comment = 'ESP="Error en Azure AI: %1 - %2\%3"';
+        VersionErr: Label 'To generate searchable PDFs, you need API Version 2024-11-30 or higher. Update your settings to the correct version.', Comment = 'ESP="Para generar PDF searchable necesita API Version 2024-11-30 o superior.\Actualice la configuración con la versión correcta."';
     begin
         StartTime := CurrentDateTime;
         Success := false;
@@ -61,13 +65,11 @@ codeunit 80110 "OCR PDF Converter"
 
         // Validar versión de API (necesita 2024-11-30 para output=pdf)
         if AzureConfig."API Version PDF Searchable" < '2024-11-30' then
-            Error('Para generar PDF searchable necesita API Version 2024-11-30 o superior.\' +
-                  'Actualice la configuración con la versión correcta.');
+            Error(VersionErr);
 
         // Preparar el contenido del blob
         TempBlob.CreateInStream(InStr);
         HttpContent.WriteFrom(InStr);
-        //HttpContent.WriteFrom(CreateBase64JsonPayload(InStr));
         HttpContent.GetHeaders(Headers);
         Headers.Remove('Content-Type');
         Headers.Add('Content-Type', 'application/octet-stream');
@@ -76,25 +78,18 @@ codeunit 80110 "OCR PDF Converter"
         // CLAVE: Usar prebuilt-read con output=pdf (API 2024-11-30+)
         // Documentación: https://learn.microsoft.com/azure/ai-services/document-intelligence/
         RequestUri := AzureConfig."Endpoint URL PDF Searchable" +
-            '/documentintelligence/documentModels/prebuilt-read:analyze' +
-            '?output=pdf' +  // ← Devuelve PDF con capa de texto searchable
+            '/documentintelligence/documentModels/' + AzureConfig."Model ID PDF Searchable" +
+            ':analyze?output=pdf' +  // ← Devuelve PDF con capa de texto searchable
             '&api-version=' + AzureConfig."API Version PDF Searchable";
 
-        //TODO Repe
-        // HttpClient.DefaultRequestHeaders().Clear();
-        // HttpClient.DefaultRequestHeaders().Add('Ocp-Apim-Subscription-Key', Config."API Key");
-
-        // Enviar archivo a Azure
+        // Coger archivo 
         if not HttpClient.Post(RequestUri, HttpContent, HttpResponseMessage) then
             Error(ConnectionErr);
 
         if not HttpResponseMessage.IsSuccessStatusCode() then begin
             // Leer el body del error para más detalles
             ErrorMsg := GetDetailedErrorMessage(HttpResponseMessage);
-            Error('Error en Azure AI: %1 - %2\%3',
-                HttpResponseMessage.HttpStatusCode(),
-                HttpResponseMessage.ReasonPhrase(),
-                ErrorMsg);
+            Error(AzuErr, HttpResponseMessage.HttpStatusCode(), HttpResponseMessage.ReasonPhrase(), ErrorMsg);
         end;
 
         // Verificar que el header existe
@@ -111,7 +106,7 @@ codeunit 80110 "OCR PDF Converter"
 
         ClearLastError();
         // Polling y obtención del PDF searchable
-        GetSearchablePDF(OperationLocation, AzureConfig, OutputFile);
+        GetSearchablePDF(DocumentNo, OperationLocation, AzureConfig, TempBlob);
 
         Success := true;
         if GetLastErrorText() <> '' then begin
@@ -120,23 +115,21 @@ codeunit 80110 "OCR PDF Converter"
         end;
 
         // Log (sin JsonResponse ya que obtenemos PDF directamente)
-        //LogConversion(FileName, StartTime, Success, ErrorMsg);
+        LogConversion(FileName, StartTime, Success, ErrorMsg);
 
         exit(Success);
     end;
 
-    local procedure GetSearchablePDF(OperationUrl: Text; AzureConfig: Record "OCR Azure AI Configuration"; var OutputPDF: OutStream)
+    local procedure GetSearchablePDF(DocumentNo: Code[20]; OperationUrl: Text; AzureConfig: Record "OCR Azure AI Configuration"; var TempBlob: Codeunit "Temp Blob")
     var
         HttpClient: HttpClient;
         HttpResponseMessage: HttpResponseMessage;
         ContentHeaders: HttpHeaders;
         MaxAttempts: Integer;
         Attempt: Integer;
-        ContentType: array[100] of Text;
-        Document: Text;
-        InStr: InStream;
         ProgressDialog: Dialog;
         Found: Boolean;
+        DialogTxt: Label 'Process OCR and generate PDF searchable...\\Attempt #1######## of #2########', Comment = 'ESP="Procesando OCR y generando PDF con OCR...\\Intento #1######## de #2########"';
     begin
         MaxAttempts := AzureConfig."Timeout Seconds" div 2;
         Attempt := 0;
@@ -146,7 +139,7 @@ codeunit 80110 "OCR PDF Converter"
         HttpClient.DefaultRequestHeaders().Add('Ocp-Apim-Subscription-Key', AzureConfig."API Key");
         HttpClient.DefaultRequestHeaders().Add('Accept', '*/*');
 
-        ProgressDialog.Open('Procesando OCR y generando PDF searchable...\\Intento #1######## de #2########');
+        ProgressDialog.Open(DialogTxt);
         repeat
             Sleep(1000);
             Attempt += 1;
@@ -158,31 +151,13 @@ codeunit 80110 "OCR PDF Converter"
                 if HttpResponseMessage.IsSuccessStatusCode() then begin
                     // Con API 2024-11-30 y output=pdf: Cuando el estado es "succeeded", el Content-Type será application/pdf y el PDF estará directamente en el response body                    
                     HttpResponseMessage.Content().GetHeaders(ContentHeaders);
-                    //if ContentHeaders.TryGetValues('Content-Type', ContentType) then
-                    // Obtener Operation-Location para polling
-                    if not ContentHeaders.Contains('Content-Type') then
-                        Error('No tiene content-type');
-                    // Obtener el valor de Operation-Location
-                    if ContentHeaders.GetValues('Content-Type', ContentType) then begin
-                        if ArrayLen(ContentType) > 0 then
-                            Document := ContentType[1];
-                        if StrPos(Document, 'application/pdf') > 0 then begin
-                            // ¡PDF encontrado en el body!
-                            ProgressDialog.Close();
-                            HttpResponseMessage.Content().ReadAs(InStr);
-                            CopyStream(OutputPDF, InStr);
-                            Found := true;
-                            exit;
-                        end;
-                    end;
                     // Si no es PDF todavía, verificar el estado en JSON
                     if CheckIfStillProcessing(HttpResponseMessage) then
                         // Continuar polling
                         continue
                     else
-                        // Estado succeeded pero no encontramos PDF
-                        // Intentar extraer de JSON
-                        if TryExtractPdfFromJson(HttpResponseMessage, OutputPDF) then begin
+                        // Estado succeeded cogemos el PDF, esta en un Endpoint Directo.
+                        if TryDownloadSearchablePdf(DocumentNo, OperationUrl, AzureConfig, TempBlob) then begin
                             ProgressDialog.Close();
                             Found := true;
                             exit;
@@ -196,13 +171,13 @@ codeunit 80110 "OCR PDF Converter"
             Error('Timeout o no se pudo obtener el PDF searchable de Azure AI');
     end;
 
-    local procedure CheckIfStillProcessing(var
-                                               HttpResponseMessage: HttpResponseMessage): Boolean
+    local procedure CheckIfStillProcessing(var HttpResponseMessage: HttpResponseMessage): Boolean
     var
         ResponseText: Text;
         JsonObject: JsonObject;
         StatusToken: JsonToken;
         Status: Text;
+        AzureAIErr: Label 'OCR processing failed in Azure AI', Comment = 'ESP="El procesamiento OCR falló en Azure AI"';
     begin
         HttpResponseMessage.Content().ReadAs(ResponseText);
 
@@ -218,7 +193,7 @@ codeunit 80110 "OCR PDF Converter"
             'running', 'notStarted':
                 exit(true); // Todavía procesando
             'failed':
-                Error('El procesamiento OCR falló en Azure AI');
+                Error(AzureAIErr);
             'succeeded':
                 exit(false); // Completado
             else
@@ -226,48 +201,35 @@ codeunit 80110 "OCR PDF Converter"
         end;
     end;
 
-    local procedure TryExtractPdfFromJson(var HttpResponseMessage: HttpResponseMessage; var OutputPDF: OutStream): Boolean
+    local procedure TryDownloadSearchablePdf(DocumentNo: Code[20]; OperationUrl: Text; AzureConfig: Record "OCR Azure AI Configuration"; var TempBlob: Codeunit "Temp Blob"): Boolean
     var
-        ResponseText: Text;
-        JsonObject: JsonObject;
-        PdfToken: JsonToken;
-        Base64Content: Text;
+        HttpClient: HttpClient;
+        HttpResponse: HttpResponseMessage;
+        PdfUrl: Text;
+        ErrorMsg: Text;
+        InStr: InStream;
     begin
-        HttpResponseMessage.Content().ReadAs(ResponseText);
+        //El resultID lo tenemos incustrado en el OperationUrl, así que borramos todo lo que vaya despues del ?api
+        OperationUrl := CopyStr(OperationUrl, 1, StrPos(OperationUrl, '?api-version') - 1);
+        // Construye la URL de descarga del PDF Ej: https://{endpoint}/documentintelligence/analyzeResults/{resultId}/pdf?api-version=2024-11-30.
+        PdfUrl := OperationUrl + '/pdf?api-version=2024-11-30';
 
-        if not JsonObject.ReadFrom(ResponseText) then
-            exit(false);
+        HttpClient.DefaultRequestHeaders().Clear();
+        HttpClient.DefaultRequestHeaders().Add('Ocp-Apim-Subscription-Key', AzureConfig."API Key");
+        HttpClient.DefaultRequestHeaders().Add('Accept', '*/*'); // clave para binarios
 
-        // Buscar PDF en diferentes ubicaciones posibles
-        // Ubicación 1: campo "pdf" directo
-        if JsonObject.Get('pdf', PdfToken) then begin
-            Base64Content := PdfToken.AsValue().AsText();
-            ConvertBase64ToPdf(Base64Content, OutputPDF);
-            exit(true);
+        if not HttpClient.Get(PdfUrl, HttpResponse) then
+            Error('No se pudo conectar al endpoint de descarga PDF.');
+
+        if not HttpResponse.IsSuccessStatusCode() then begin
+            ErrorMsg := GetDetailedErrorMessage(HttpResponse);
+            Error('Error en Azure AI: %1 - %2\%3', HttpResponse.HttpStatusCode(), HttpResponse.ReasonPhrase(), ErrorMsg);
         end;
 
-        // Ubicación 2: analyzeResult.pdf
-        if JsonObject.Get('analyzeResult', PdfToken) then
-            if PdfToken.AsObject().Get('pdf', PdfToken) then begin
-                Base64Content := PdfToken.AsValue().AsText();
-                ConvertBase64ToPdf(Base64Content, OutputPDF);
-                exit(true);
-            end;
-
-        exit(false);
-    end;
-
-    local procedure ConvertBase64ToPdf(Base64Content: Text; var OutputPDF: OutStream)
-    var
-        Base64Convert: Codeunit "Base64 Convert";
-        TempBlob: Codeunit "Temp Blob";
-        InStr: InStream;
-        OutStr: OutStream;
-    begin
-        TempBlob.CreateOutStream(OutStr);
-        Base64Convert.FromBase64(Base64Content, OutStr);
-        TempBlob.CreateInStream(InStr);
-        CopyStream(OutputPDF, InStr);
+        HttpResponse.Content().ReadAs(InStr);
+        SaveProcessedPDFToCDC(InStr, DocumentNo);
+        //ReplaceOriginalPDFInCDC(InStr, DocumentNo);
+        exit(true);
     end;
 
     local procedure ValidateConfiguration(AzureConfig: Record "OCR Azure AI Configuration")
@@ -278,9 +240,8 @@ codeunit 80110 "OCR PDF Converter"
             Error(ConfigErr);
 
         AzureConfig.TestField("Endpoint URL PDF Searchable");
-        AzureConfig.TestField("API Key");
-        //TODO 
-        //AzureConfig.TestField("Model ID");
+        AzureConfig.TestField("API Version PDF Searchable");
+        AzureConfig.TestField("Model ID PDF Searchable");
     end;
 
     local procedure LogConversion(FileName: Text; StartTime: DateTime; Success: Boolean; ErrorMsg: Text)
@@ -298,14 +259,9 @@ codeunit 80110 "OCR PDF Converter"
         ConversionHistory."Processing Time (sec)" := ProcessingTime;
         ConversionHistory."User ID" := CopyStr(UserId, 1, MaxStrLen(ConversionHistory."User ID"));
         ConversionHistory."Error Message" := CopyStr(ErrorMsg, 1, MaxStrLen(ConversionHistory."Error Message"));
-
-        // Nota: No podemos extraer estadísticas detalladas cuando usamos output=pdf
-        // ya que no recibimos el JSON con la info de páginas/palabras
-        // Solo recibimos el PDF searchable
         ConversionHistory."Pages Processed" := 0;
         ConversionHistory."Words Detected" := 0;
         ConversionHistory."Average Confidence" := 0;
-
         ConversionHistory.Insert(true);
     end;
 
@@ -362,26 +318,64 @@ codeunit 80110 "OCR PDF Converter"
                 if ErrorToken.AsObject().Get('innererror', MessageToken) then
                     if ErrorToken.AsObject().Get('message', MessageToken) then
                         exit(MessageToken.AsValue().AsText());
-
         // Si no es JSON, devolver texto plano
         exit(ResponseText);
     end;
 
-    local procedure CreateBase64JsonPayload(var FileStream: InStream): Text
+    procedure SaveProcessedPDFToCDC(var ProcessedPDF: InStream; OriginalDocNo: Code[20])
     var
-        Base64Convert: Codeunit "Base64 Convert";
-        TempBlob: Codeunit "Temp Blob";
-        Base64String: Text;
-        JsonObject: JsonObject;
-        JsonText: Text;
-        OutStr: OutStream;
+        CDCDocument: Record "CDC Document";
+        CDCDocNew: Record "CDC Document";
+        TempFile2: Record "CDC Temp File" temporary;
+        NotFoundErr: Label 'Document %1 not found in CDC', Comment = 'ESP="Documento %1 no encontrado en CDC"';
     begin
-        Base64String := Base64Convert.ToBase64(FileStream);
+        // Obtener documento original para copiar configuración
+        if not CDCDocument.Get(OriginalDocNo) then
+            Error(NotFoundErr, OriginalDocNo);
 
-        // Crear JSON payload según Azure Document Intelligence API
-        // Formato: { "base64Source": "data:application/pdf;base64,JVBERi0xLj..." }
-        JsonObject.Add('base64Source', Base64String);
-        JsonObject.WriteTo(JsonText);
-        exit(JsonText);
+        // Crear nuevo documento CDC basado en el original
+        CDCDocNew.Init();
+        CDCDocNew.TransferFields(CDCDocument, false);
+
+        // Generar nuevo número
+        CDCDocNew."No." := '';
+        CDCDocNew.Insert(true);
+
+        // Actualizar descripción
+        CDCDocNew.FileName := CopyStr(CDCDocNew.FileName, 1, MaxStrLen(CDCDocNew.FileName));
+        CDCDocNew."File Extension" := 'pdf';
+        CDCDocNew.Description := CopyStr('(OCR) ' + CDCDocument.Description, 1, MaxStrLen(CDCDocNew.Description));
+        // Copiar PDF procesado al campo PDF File
+        // CDC usa Azure Blob Storage automáticamente si está configurado
+        Clear(CDCDocNew."Misc. File");
+        TempFile2.CreateFromStream('', ProcessedPDF);
+        CDCDocNew.SetMiscFile(TempFile2);
+
+        //Importar nuevo registro
+        CDCDocNew.Modify(true);
+        //Borrar antiguo.
+        CDCDocument.Delete(TRUE);
+    end;
+
+    procedure ReplaceOriginalPDFInCDC(var ProcessedPDF: InStream; DocNo: Code[20])
+    var
+        CDCDocument: Record "CDC Document";
+        TempFile2: Record "CDC Temp File" temporary;
+        NotFoundErr: Label 'Document %1 not found in CDC', Comment = 'ESP="Documento %1 no encontrado en CDC"';
+    begin
+        if not CDCDocument.Get(DocNo) then
+            Error(NotFoundErr, DocNo);
+
+        // Reemplazar PDF original con el procesado
+        // Azure Blob Storage se actualiza automáticamente
+        CDCDocument.Description := CopyStr('(OCR) ' + CDCDocument.Description, 1, MaxStrLen(CDCDocument.Description));
+        CDCDocument."File Extension" := 'pdf';
+        CDCDocument.ClearMiscFile();
+        TempFile2.CreateFromStream('', ProcessedPDF);
+        CDCDocument.SetMiscFile(TempFile2);
+
+
+        // Actualizar timestamp
+        CDCDocument.Modify(true);
     end;
 }

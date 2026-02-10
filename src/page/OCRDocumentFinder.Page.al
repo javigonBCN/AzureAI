@@ -184,9 +184,6 @@ page 80102 "OCR Document Finder"
                 var
                     OCRPDFConverter: Codeunit "OCR PDF Converter";
                 begin
-                    if DocumentNo = '' then
-                        Error('Debe seleccionar un documento');
-
                     OCRPDFConverter.ProcessDocument(DocumentNo);
                 end;
             }

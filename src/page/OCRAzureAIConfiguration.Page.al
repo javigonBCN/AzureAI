@@ -83,6 +83,12 @@ page 80100 "OCR Azure AI Configuration"
                     ToolTip = 'API Key de Azure AI Document Intelligence';
                 }
 
+                field("Model ID PDF Searchable"; Rec."Model ID PDF Searchable")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'ID del modelo a utilizar (prebuilt-read o un modelo personalizado)';
+                }
+
                 field("API Version PDF Searchable"; Rec."API Version PDF Searchable")
                 {
                     ApplicationArea = All;
